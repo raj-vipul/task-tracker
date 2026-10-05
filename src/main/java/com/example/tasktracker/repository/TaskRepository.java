@@ -14,13 +14,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     long countByStatus(TaskStatus status);
 
-    /**
-     * Example of the "SQL with CTEs" skill called out in the job description.
-     * Builds a temporary result set of overdue tasks, then aggregates it by status.
-     * Written as a native query so it runs the same way it would in a DB client.
-     * Note: PostgreSQL folds unquoted identifiers to lower_snake_case, so the
-     * alias below (task_count) is what Spring Data relaxed-binds to getTaskCount().
-     */
+    
     @Query(value = """
             WITH overdue_tasks AS (
                 SELECT *
